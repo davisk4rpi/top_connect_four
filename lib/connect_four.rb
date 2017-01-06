@@ -43,9 +43,10 @@ module ConnectFour
 			array = [column, column+10, column+20, column+30, column+40, column+50]
 			array.select! { | each | @board[each] == nil}
 			return array[0]
+		end
 
 		def four(array)
-			return true if array.all?{ | each | each == array[0]}
+			array.each { | array | return true if array.all?{ | each | each == array[0] } }
 			return false
 		end
 
@@ -61,7 +62,12 @@ module ConnectFour
 			array << [@board[coordinate1], @board[coordinate2], @board[coordinate2+shift], @board[coordinate2+shift*2]]
 			array << [@board[coordinate1-shift], @board[coordinate1], @board[coordinate2], @board[coordinate2+shift]]
 			array << [@board[coordinate1-shift*2], @board[coordinate1-shift], @board[coordinate1], @board[coordinate2]]
-			winner if four(array)
+			return winner if four(array)
+			return false
+		end
+
+		def winner
+			puts "well that is the game folks, see you later"
 		end
 
 	end

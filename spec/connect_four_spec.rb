@@ -32,26 +32,29 @@ describe ConnectFour do
 		end
 
 		describe ".try_everything" do 
-			context "given a marker, coordinate, and shift" do
-				context "'X', 11, 10" do
+			context "given the coordinate, and match" do
+				context "11, 22" do
 					it "is a match" do
-						game.board[21] = 'X'
-						expect(game.continue_check('X', 11, 10)).to be true
+						game.board[0] = 'X'
+						game.board[11] = 'X'
+						game.board[22] = 'X'
+						game.board[33] = 'X'
+						expect(game.try_everything(11, 22)).not_to be false
 					end
 				end
 			end
 		end
 
-		describe ".four_in_a_row" do
+		describe ".four" do
 			context "given an array" do 
-				context "['X','X','X','X']" do
+				context "[['X','X','X','X'],['X','X','X','O'],['X','X','O','O']]" do
 					it "returns true" do
-						expect(game.four(["X","X","X","X"])).to be true
+						expect(game.four([['X','X','X','X'],['X','X','X','O'],['X','X','O','O']])).to be true
 					end
 				end
-				context "['X','O','X','X']" do
+				context "[['O','X','X','X'],['X','X','X','O'],['X','X','O','O']]" do
 					it "returns true" do
-						expect(game.four(["X","O","X","X"])).to be false
+						expect(game.four([['O','X','X','X'],['X','X','X','O'],['X','X','O','O']])).to be false
 					end
 				end
 			end
