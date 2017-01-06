@@ -25,7 +25,7 @@ describe ConnectFour do
 						game.board[12] = "X"
 						game.board[22] = "X"
 						expect(game.check_adjacent("X", 13)).to match_array([12, 22])
-						expect(game.board[4]).to eql(nil)
+						expect(game.board[4]).to eql(" ")
 					end
 				end
 			end
@@ -70,9 +70,9 @@ describe ConnectFour do
 					expect(board.board.length).to eql(42)
 				end
 			end
-			context "board[13] == nil" do 
-				it "returns nil" do 
-					expect(board.board[13]).to eql(nil)
+			context "board[13] == ' '" do 
+				it "returns ' '" do 
+					expect(board.board[13]).to eql(" ")
 				end
 			end
 		end
@@ -81,19 +81,19 @@ describe ConnectFour do
 			context "display the game board" do
 				context "an empty board" do
 					it "displays an empty board" do
-						expect(board.view.first_row).to eql("| | | | | | | |")
+						expect(board.view).to eql("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |")
 					end
 				end
 				context "first row full" do
 					it "displays a full first row" do
-						game.board[0] = "X"
-						game.board[1] = "O"
-						game.board[2] = "O"
-						game.board[3] = "O"
-						game.board[4] = "X"
-						game.board[5] = "X"
-						game.board[6] = "X"
-						expect(board.view.first_row).to eql("|X|O|O|O|X|X|X|")
+						board.board[0] = "X"
+						board.board[1] = "O"
+						board.board[2] = "O"
+						board.board[3] = "O"
+						board.board[4] = "X"
+						board.board[5] = "X"
+						board.board[6] = "X"
+						expect(board.view).to eql("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n|X|O|O|O|X|X|X|")
 					end
 				end
 			end
