@@ -19,6 +19,13 @@ module ConnectFour
 			@player1 = Player.new("\u26AA", "Player 1")
 			@player2 = Player.new("\u26AB", "Player 2")
 			@board = GameBoard.new.board
+			@turn = 0
+		end
+
+		def next_turn
+			return game_over if @turn == 42
+			@turn += 1
+			active_turn
 		end
 
 		def active_turn(player)
@@ -68,6 +75,11 @@ module ConnectFour
 
 		def winner
 			puts "well that is the game folks, see you later"
+		end
+
+		def game_over
+			puts "You both suck! Play again? (y to start over, anything else to exit)"
+			Game.new if gets.chomp == 'y'
 		end
 
 	end

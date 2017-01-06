@@ -20,8 +20,8 @@ describe ConnectFour do
 				end
 				context "'X', 13 with two adjacent matches" do 
 					it "finds all adjacent matches" do
-						game.board[2] = "0"
-						game.board[3] = "0"
+						game.board[2] = "O"
+						game.board[3] = "O"
 						game.board[12] = "X"
 						game.board[22] = "X"
 						expect(game.check_adjacent("X", 13)).to match_array([12, 22])
@@ -76,7 +76,27 @@ describe ConnectFour do
 				end
 			end
 		end
+
+		describe ".view" do
+			context "display the game board" do
+				context "an empty board" do
+					it "displays an empty board" do
+						expect(board.view.first_row).to eql("| | | | | | | |")
+					end
+				end
+				context "first row full" do
+					it "displays a full first row" do
+						game.board[0] = "X"
+						game.board[1] = "O"
+						game.board[2] = "O"
+						game.board[3] = "O"
+						game.board[4] = "X"
+						game.board[5] = "X"
+						game.board[6] = "X"
+						expect(board.view.first_row).to eql("|X|O|O|O|X|X|X|")
+					end
+				end
+			end
+		end
 	end
-
-
 end
