@@ -49,6 +49,7 @@ module ConnectFour
 			unless matches.length == 0
 				matches.each { | match | try_everything(coordinate, match)}
 			end
+			system "clear" or system "cls"
 			next_turn
 		end
 
@@ -60,7 +61,7 @@ module ConnectFour
 
 		def find_coordinate(column)
 			array = [column, column+10, column+20, column+30, column+40, column+50]
-			array.select! { | each | @board[each] == " "}
+			array.select! { | each | @board[each] == "  "}
 			return array[0]
 		end
 
@@ -128,13 +129,13 @@ module ConnectFour
 				sixth_row += "#{value}|" if (count >= 35 && count < 42)
 				count += 1
 			end
-			grid =  " 0 1 2 3 4 5 6\n#{sixth_row}\n#{fifth_row}\n#{fourth_row}\n#{third_row}\n#{second_row}\n#{first_row}"
+			grid =  "  0  1  2  3  4  5  6\n#{sixth_row}\n#{fifth_row}\n#{fourth_row}\n#{third_row}\n#{second_row}\n#{first_row}"
 			return grid
 		end
 
 		def board_hash
 			board = {}
-			@coordinates.each { | key | board[key] = " " }
+			@coordinates.each { | key | board[key] = "  " }
 			return board
 		end
 
